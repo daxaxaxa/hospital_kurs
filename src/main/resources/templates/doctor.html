@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor</title>
+    <style>
+        .sidenav {
+  width: 160px;
+  position: fixed;
+  height: 100%;
+  background-color: #000099;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 22px;
+  color: rgb(255, 206, 235);
+  display: block;
+}
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+.separate {
+   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+   text-align: center;
+   width: 100%;
+   border-collapse: separate;
+   border-spacing: 5px;
+   background: #FFFFFF;
+   color: #000000;
+   border: 16px solid #99FFFF;
+   border-radius: 20px;
+}
+.separate th {
+   font-size: 18px;
+   padding: 10px;
+}
+.separate td {
+   background: #CCFFFF;
+   padding: 10px;
+}
+.section {
+  text-align: center;
+  margin-left: 160px;
+  background: #00FFFF;
+}
+input.button15 {
+  display: inline-block;
+  font-family: arial,sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(68,68,68);
+  text-decoration: none;
+  user-select: none;
+  padding: .2em 1.2em;
+  outline: none;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 2px;
+  background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);
+  transition: all .218s ease 0s;
+}
+input.button15:hover {
+  color: rgb(24,24,24);
+  border: 1px solid rgb(198,198,198);
+  background: #f7f7f7 linear-gradient(#f7f7f7, #f1f1f1);
+  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+input.button15:active {
+  color: rgb(51,51,51);
+  border: 1px solid rgb(204,204,204);
+  background: rgb(238,238,238) linear-gradient(rgb(238,238,238), rgb(224,224,224));
+  box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+    </style>
+</head>
+<body bgcolor="#00FFFF">
+<div class="sidenav">
+    <a th:href="@{/home}">Назад</a>
+    <a th:href="@{/logout}">Выйти</a>
+</div>
+<div class="section">
+    <h1> Записи пациентов </h1>
+    <table class="separate">
+        <tr>
+            <th>Имя пациента</th>
+            <th>Фамилия пациента</th>
+            <th>ФИО доктора</th>
+            <th>Статус приема</th>
+            <th> </th>
+        </tr>
+        <tbody>
+        <tr th:each="appoint: ${appoints}">
+            <td th:text="${appoint.firstName}"></td>
+            <td th:text="${appoint.lastName}"></td>
+            <td th:text="${appoint.dId}"></td>
+            <td>
+                <form method="post" role="form" th:action="@{'/doctor/'+${appoint.id}}">
+                    <select class="form-control" id="status" th:name="status">
+                        <option th:value="${appoint.status}" th:text="${appoint.status}"></option>
+                        <option th:each="status : ${statuses}" th:value="${status}" th:text="${status}"></option>
+                    </select>
+                    <input type="submit" class="button15" value="Сохранить">
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

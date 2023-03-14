@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="style1.css">
+    <style>
+        div {
+    background-color:rgba(102,178,255, 0.7);
+    width: fit-content;
+    height: fit-content;
+    padding-left: 30px;
+    padding-right: 30px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+    </style>
+</head>
+<body>
+<div>
+    <br><br>
+    <a th:href="@{/patient}" class="button button1" style="height: 60px;width: 140px">Записаться к врачу</a>
+    <a th:href="@{/doctor}" class="button button1" style="height: 60px;width: 140px">Записанные пациенты</a>
+    <br>
+    <a th:href="@{/admin}" class="button button2" style="height: 40px;">Админ</a>
+    <br>
+    <a th:href="@{/logout}" class="button" style="height: 40px; float:right; font-size=18px">Выйти</a>
+    <br><br>
+</div>
+</body>
+</html>
